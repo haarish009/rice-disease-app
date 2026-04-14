@@ -1,0 +1,186 @@
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Image row */
+.result__images {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.result__figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.result__figure img {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.result__figure figcaption {
+  font-size: 0.85rem;
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Toggle button */
+.btn-toggle {
+  font-size: 0.75rem;
+  background: none;
+  border: 1px solid #a0aec0;
+  border-radius: 4px;
+  padding: 1px 6px;
+  cursor: pointer;
+  color: #4a5568;
+}
+
+.btn-toggle:hover {
+  background: #edf2f7;
+}
+
+/* Diagnosis card */
+.result__card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.result__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.result__disease {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #276749;
+}
+
+/* Severity badges */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.badge--none     { background: #c6f6d5; color: #276749; }
+.badge--low      { background: #fefcbf; color: #744210; }
+.badge--medium   { background: #feebc8; color: #7b341e; }
+.badge--high     { background: #fed7d7; color: #742a2a; }
+.badge--critical { background: #feb2b2; color: #63171b; }
+
+/* Confidence bar */
+.result__confidence {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.conf-label {
+  font-size: 0.85rem;
+  color: #718096;
+  white-space: nowrap;
+}
+
+.conf-bar {
+  flex: 1;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.conf-fill {
+  height: 100%;
+  background: #276749;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.conf-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #276749;
+  white-space: nowrap;
+}
+
+/* Description */
+.result__description {
+  font-size: 0.95rem;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+/* Probability breakdown */
+.result__probabilities {
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.result__probabilities summary {
+  cursor: pointer;
+  color: #276749;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.result__probabilities ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-left: 0.5rem;
+}
+
+.result__probabilities li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.prob-value {
+  font-weight: 600;
+}
+
+/* Treatment */
+.result__treatment h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.result__treatment ol {
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  color: #4a5568;
+  line-height: 1.5;
+}

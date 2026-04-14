@@ -1,0 +1,47 @@
+.uploader {
+  border: 2px dashed #68d391;
+  border-radius: 12px;
+  background: #f0fff4;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+  max-width: 480px;
+  user-select: none;
+}
+
+.uploader:hover,
+.uploader--dragging {
+  border-color: #276749;
+  background: #c6f6d5;
+}
+
+.uploader__input {
+  display: none;
+}
+
+.uploader__icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.uploader__primary {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #276749;
+}
+
+.uploader__secondary {
+  font-size: 0.95rem;
+  color: #4a5568;
+}
+
+.uploader__hint {
+  font-size: 0.8rem;
+  color: #a0aec0;
+  margin-top: 0.25rem;
+}
