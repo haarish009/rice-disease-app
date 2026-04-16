@@ -10,9 +10,9 @@ NUM_CLASSES_STAGE2 = 10
 def build_grad_model(stage1_model):
     """
     Rebuilds the Stage 1 architecture to provide access to the last conv layer for Grad-CAM++.
-    As per user instructions, uses MobileNetV2 with alpha=0.75.
+    Uses weight copying to ensure stability with nested Functional models.
     """
-    print("Building Grad-CAM version of Stage 1 model...")
+    print("Building Grad-CAM version of Stage 1 model via weight copying...")
     
     mobilenet_base = applications.MobileNetV2(
         include_top=False,
@@ -25,24 +25,24 @@ def build_grad_model(stage1_model):
     inputs = layers.Input(shape=(*IMG_SIZE, 3))
     x = mobilenet_base(inputs, training=False)
 
-    # Store the conv output for Grad-CAM (last output of MobileNetV2 base)
+    # Store the conv output for Grad-CAM
     conv_output = x 
 
-    # Continue with classification layers (mirroring the trained architecture)
+    # Reconstruct the classification head
     x = layers.GlobalAveragePooling2D()(x)
     x = layers.Dropout(0.3)(x)
     x = layers.Dense(128, activation='relu')(x)
     x = layers.Dropout(0.2)(x)
     outputs = layers.Dense(NUM_CLASSES_STAGE1, activation='softmax')(x)
 
-    # Create the full model
+    # Create the full temporary model to receive weights
     grad_model_full = models.Model(inputs, outputs)
 
-    # Copy weights from trained stage1_model
-    print("Copying weights from trained Stage 1 model to Grad-CAM model...")
+    # Copy weights from the loaded stage1_model
+    print("Copying weights to Grad-CAM model...")
     grad_model_full.set_weights(stage1_model.get_weights())
 
-    # Create the grad model with both conv and final outputs
+    # Create the final multi-output model
     grad_model = models.Model(
         inputs=grad_model_full.input,
         outputs=[conv_output, grad_model_full.output]
