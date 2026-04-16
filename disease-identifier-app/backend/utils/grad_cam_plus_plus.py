@@ -10,8 +10,8 @@ class GradCAMPlusPlus:
         """
         self.model = model
 
-    def generate_mask(self, image, class_idx, threshold=0.5):
-        """Generate Grad-CAM++ attention mask"""
+    def generate_heatmap(self, image, class_idx):
+        """Returns a soft float [0,1] heatmap for Stage 2 attention."""
         # Ensure image is float32 and normalized
         if image.max() > 1.0:
             image = image.astype('float32') / 255.0
@@ -32,11 +32,10 @@ class GradCAMPlusPlus:
         grads = tape.gradient(class_channel, conv_outputs)
 
         if grads is None:
-            print("⚠️ Warning: No gradients computed, returning uniform mask")
+            print("⚠️ Warning: No gradients computed, returning uniform heatmap")
             return np.ones((image.shape[0], image.shape[1]))
 
         # Grad-CAM++ computation
-        # Compute alpha (pixel-wise weights)
         conv_outputs_np = conv_outputs[0].numpy()
         grads_np = grads[0].numpy()
 
@@ -56,19 +55,23 @@ class GradCAMPlusPlus:
         if heatmap.max() > 0:
             heatmap = heatmap / heatmap.max()
         else:
-            print("⚠️ Warning: Zero heatmap, returning uniform mask")
+            print("⚠️ Warning: Zero heatmap, returning uniform heatmap")
             return np.ones((image.shape[0], image.shape[1]))
 
-        # Resize to original image size
-        heatmap_resized = cv2.resize(heatmap, (image.shape[1], image.shape[0]))
+        # Return soft continuous heatmap resized to image
+        return cv2.resize(heatmap, (image.shape[1], image.shape[0]))
 
+    def generate_mask(self, image, class_idx, threshold=0.5):
+        """Generate Grad-CAM++ binary mask based on heatmap threshold"""
+        heatmap = self.generate_heatmap(image, class_idx)
+        
         # Apply threshold
-        mask = (heatmap_resized > threshold).astype('float32')
+        mask = (heatmap > threshold).astype('float32')
 
         # Ensure mask has some content
         if mask.sum() < 10:
-            threshold_val = np.percentile(heatmap_resized, 70)
-            mask = (heatmap_resized > threshold_val).astype('float32')
+            threshold_val = np.percentile(heatmap, 70)
+            mask = (heatmap > threshold_val).astype('float32')
 
         return mask
 

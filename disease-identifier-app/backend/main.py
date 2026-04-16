@@ -94,8 +94,10 @@ async def predict(file: UploadFile = File(...)):
     }
     
     # --- XAI: Grad-CAM++ Attention Mask ---
-    mask = grad_cam_engine.generate_mask(img_array, stage1_class_idx, threshold=0.5)
-    overlay = overlay_heatmap(mask, img_array)
+    # use continuous heatmap for Stage 2 attention, and binary mask for overlay visualization
+    heatmap = grad_cam_engine.generate_heatmap(img_array, stage1_class_idx)
+    mask_for_overlay = grad_cam_engine.generate_mask(img_array, stage1_class_idx, threshold=0.5)
+    overlay = overlay_heatmap(mask_for_overlay, img_array)
     
     _, buffer = cv2.imencode('.png', cv2.cvtColor(overlay, cv2.COLOR_RGB2BGR))
     heatmap_base64 = base64.b64encode(buffer).decode('utf-8')
@@ -104,8 +106,8 @@ async def predict(file: UploadFile = File(...)):
     # --- STAGE 2: Refined Attention ---
     final_label = stage1_label
     if stage1_label != "Healthy":
-        mask_3ch = np.repeat(mask[:, :, np.newaxis], 3, axis=2)
-        segmented_img = img_array * mask_3ch
+        heatmap_3ch = np.repeat(heatmap[:, :, np.newaxis], 3, axis=2)
+        segmented_img = img_array * heatmap_3ch
         
         stage2_preds = stage2_model.predict(segmented_img[np.newaxis, ...], verbose=0)
         stage2_class_idx = np.argmax(stage2_preds[0])

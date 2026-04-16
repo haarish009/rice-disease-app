@@ -5,14 +5,14 @@ from utils.grad_cam_plus_plus import GradCAMPlusPlus, overlay_heatmap
 import cv2
 
 def verify_pipeline():
-    print("🚀 Starting verification...")
+    print("Starting verification...")
     
     try:
         # 1. Load models
         print("Loading models...")
         stage1_model, stage2_model, grad_model = load_models()
         grad_cam_engine = GradCAMPlusPlus(grad_model)
-        print("✅ Models loaded successfully")
+        print("Models loaded successfully")
 
         # 2. Create dummy image (160x160x3)
         print("Creating dummy image...")
@@ -22,12 +22,12 @@ def verify_pipeline():
         print("Running Stage 1 inference...")
         stage1_preds = stage1_model.predict(dummy_img[np.newaxis, ...], verbose=0)
         stage1_class_idx = np.argmax(stage1_preds[0])
-        print(f"✅ Stage 1 predicted class index: {stage1_class_idx}")
+        print(f"Stage 1 predicted class index: {stage1_class_idx}")
 
         # 4. Grad-CAM++ Mask Generation
         print("Generating Grad-CAM++ mask...")
         mask = grad_cam_engine.generate_mask(dummy_img, stage1_class_idx, threshold=0.5)
-        print(f"✅ Mask generated. Shape: {mask.shape}, Sum: {mask.sum():.2f}")
+        print(f"Mask generated. Shape: {mask.shape}, Sum: {mask.sum():.2f}")
         
         # 5. Segmented Image
         print("Applying mask...")
@@ -38,14 +38,14 @@ def verify_pipeline():
         print("Running Stage 2 inference...")
         stage2_preds = stage2_model.predict(segmented_img[np.newaxis, ...], verbose=0)
         stage2_class_idx = np.argmax(stage2_preds[0])
-        print(f"✅ Stage 2 predicted class index: {stage2_class_idx}")
+        print(f"Stage 2 predicted class index: {stage2_class_idx}")
 
         # 7. Heatmap Overlay
         print("Generating heatmap overlay...")
         overlay = overlay_heatmap(mask, dummy_img)
-        print(f"✅ Overlay generated. Shape: {overlay.shape}")
+        print(f"Overlay generated. Shape: {overlay.shape}")
 
-        print("\n✨ VERIFICATION SUCCESSFUL! The backend pipeline is fully functional.")
+        print("\nVERIFICATION SUCCESSFUL! The backend pipeline is fully functional.")
 
     except Exception as e:
         print(f"\n❌ VERIFICATION FAILED: {str(e)}")
