@@ -48,7 +48,7 @@ def verify_pipeline():
         print("\nVERIFICATION SUCCESSFUL! The backend pipeline is fully functional.")
 
     except Exception as e:
-        print(f"\n❌ VERIFICATION FAILED: {str(e)}")
+        print(f"\nVERIFICATION FAILED: {str(e)}")
         import traceback
         traceback.print_exc()
 
