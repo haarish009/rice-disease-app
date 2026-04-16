@@ -93,20 +93,24 @@ async def predict(file: UploadFile = File(...)):
         }
     }
     
-    # --- XAI: Grad-CAM++ Attention Mask ---
-    # use continuous heatmap for Stage 2 attention, and binary mask for overlay visualization
-    heatmap = grad_cam_engine.generate_heatmap(img_array, stage1_class_idx)
-    mask_for_overlay = grad_cam_engine.generate_mask(img_array, stage1_class_idx, threshold=0.5)
-    overlay = overlay_heatmap(mask_for_overlay, img_array)
-    
+    # --- XAI: Grad-CAM++ ---
+    heatmap_soft = grad_cam_engine.generate_heatmap(img_array, stage1_class_idx)
+
+    # For display only — threshold for overlay
+    mask_display = (heatmap_soft > 0.5).astype('float32')
+    if mask_display.sum() < 10:
+        threshold_val = np.percentile(heatmap_soft, 70)
+        mask_display = (heatmap_soft > threshold_val).astype('float32')
+
+    overlay = overlay_heatmap(mask_display, img_array)
     _, buffer = cv2.imencode('.png', cv2.cvtColor(overlay, cv2.COLOR_RGB2BGR))
     heatmap_base64 = base64.b64encode(buffer).decode('utf-8')
     result["heatmap"] = heatmap_base64
 
-    # --- STAGE 2: Refined Attention ---
+    # --- STAGE 2: Use SOFT heatmap as attention weight (not binary mask) ---
     final_label = stage1_label
     if stage1_label != "Healthy":
-        heatmap_3ch = np.repeat(heatmap[:, :, np.newaxis], 3, axis=2)
+        heatmap_3ch = np.repeat(heatmap_soft[:, :, np.newaxis], 3, axis=2)
         segmented_img = img_array * heatmap_3ch
         
         stage2_preds = stage2_model.predict(segmented_img[np.newaxis, ...], verbose=0)
