@@ -1,0 +1,19 @@
+# Rice Disease Detection – Python backend dependencies
+
+# --- Web framework ---
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9   # required for FastAPI file uploads
+
+# --- Image processing ---
+Pillow>=10.3.0
+opencv-python-headless>=4.9.0
+
+# --- Numerical ---
+numpy>=1.26.0
+
+# --- ML runtime (choose one) ---
+# Option A: full TensorFlow (needed for Grad-CAM++ with tf.GradientTape)
+tensorflow>=2.16.0
+# Option B: lightweight inference-only runtime (no gradient support)
+# tflite-runtime>=2.14.0

@@ -1,0 +1,99 @@
+{
+  "model_name": "RiceNet-S1",
+  "version": "1.0.0",
+  "input_size": [224, 224],
+  "num_classes": 7,
+  "classes": [
+    {
+      "id": 0,
+      "name": "Bacterial Leaf Blight",
+      "description": "A serious bacterial disease caused by Xanthomonas oryzae pv. oryzae that causes wilting and yellowing of leaves.",
+      "severity": "high",
+      "treatment": [
+        "Apply copper-based bactericides",
+        "Remove and destroy infected plants",
+        "Drain the field for 2-3 days",
+        "Use resistant varieties in future planting",
+        "Avoid excessive nitrogen fertilization"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Brown Spot",
+      "description": "A fungal disease caused by Bipolaris oryzae that appears as brown spots on leaves and can cause significant yield losses.",
+      "severity": "medium",
+      "treatment": [
+        "Apply fungicides containing mancozeb or propiconazole",
+        "Improve soil fertility and drainage",
+        "Use certified disease-free seeds",
+        "Maintain optimal plant nutrition",
+        "Remove infected plant debris"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Leaf Blast",
+      "description": "A devastating fungal disease caused by Magnaporthe oryzae that creates diamond-shaped lesions on leaves.",
+      "severity": "high",
+      "treatment": [
+        "Apply tricyclazole or isoprothiolane fungicides",
+        "Avoid excessive nitrogen application",
+        "Drain paddies intermittently",
+        "Use resistant rice varieties",
+        "Ensure proper plant spacing for air circulation"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Neck Blast",
+      "description": "A severe form of blast disease affecting the neck (panicle base) of rice plants, leading to white or gray panicles.",
+      "severity": "critical",
+      "treatment": [
+        "Apply systemic fungicides at booting stage",
+        "Use tricyclazole or isoprothiolane as preventive treatment",
+        "Avoid late-season nitrogen applications",
+        "Use resistant varieties",
+        "Practice crop rotation"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Sheath Blight",
+      "description": "A soilborne fungal disease caused by Rhizoctonia solani that affects the sheath and leaves of rice plants.",
+      "severity": "medium",
+      "treatment": [
+        "Apply validamycin or hexaconazole fungicides",
+        "Reduce plant density",
+        "Drain fields when possible",
+        "Avoid excessive nitrogen use",
+        "Flood fields to submerge sclerotia"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Tungro",
+      "description": "A viral disease transmitted by green leafhoppers that causes stunting and yellow-orange discoloration of leaves.",
+      "severity": "high",
+      "treatment": [
+        "Control green leafhopper vector using insecticides",
+        "Remove and destroy infected plants",
+        "Synchronize planting in the region",
+        "Use tungro-resistant varieties",
+        "Avoid planting near infected fields"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Healthy",
+      "description": "No disease detected. The rice plant appears healthy with normal green coloration and no visible disease symptoms.",
+      "severity": "none",
+      "treatment": [
+        "Maintain regular monitoring",
+        "Continue proper fertilization schedule",
+        "Ensure adequate water management",
+        "Practice integrated pest management",
+        "Keep field clean of debris and weeds"
+      ]
+    }
+  ]
+}
