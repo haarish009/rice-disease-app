@@ -98,6 +98,30 @@ const AnalysisResults = ({ results, loading }) => {
           </div>
         </div>
       </div>
+
+      {/* Metadata / Knowledge Base Section */}
+      {results.metadata && (results.metadata.cause || results.metadata.remedy) && (
+        <div className="knowledge-base-section glass" style={{ marginTop: '1.5rem', padding: '1.5rem', borderRadius: '12px' }}>
+          <div className="section-header">
+            <Info size={18} />
+            <h3>Disease Knowledge Base & Remediation</h3>
+          </div>
+          <div style={{ display: 'grid', gap: '1rem', marginTop: '1rem' }}>
+            {results.metadata.cause && (
+              <div className="metadata-item">
+                <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem' }}>Cause</h4>
+                <p style={{ lineHeight: '1.5' }}>{results.metadata.cause}</p>
+              </div>
+            )}
+            {results.metadata.remedy && (
+              <div className="metadata-item">
+                <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem' }}>Recommended Actions</h4>
+                <p style={{ lineHeight: '1.5' }}>{results.metadata.remedy}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
