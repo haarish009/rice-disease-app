@@ -1,0 +1,62 @@
+[
+  {
+    "id": 0,
+    "name": "Bacterial Leaf Blight",
+    "cause": "Caused by Xanthomonas oryzae pv. oryzae bacteria. Thrives in high humidity and temperatures (25-34°C). Spreads through wind and rain.",
+    "remedy": "Use resistant varieties (e.g., IR64). Ensure balanced nitrogen fertilization. Maintain proper field drainage and avoid over-flooding."
+  },
+  {
+    "id": 1,
+    "name": "Brown Spot",
+    "cause": "Fungal pathogen Bipolaris oryzae. Often occurs in soils deficient in nutrients, especially potassium.",
+    "remedy": "Improve soil fertility through balanced fertilization (add potassium). Use healthy, certified seeds. Apply fungicides like edifenphos if infection is severe."
+  },
+  {
+    "id": 2,
+    "name": "Healthy",
+    "cause": "The plant shows no signs of pathogenic infection or nutrient deficiency.",
+    "remedy": "Maintain current agricultural practices. Continue regular monitoring and optimal fertilization to prevent future issues."
+  },
+  {
+    "id": 3,
+    "name": "Leaf Blast",
+    "cause": "Fungus Pyricularia oryzae. Attacks leaves during the vegetative stage. Favored by high humidity and cool night temperatures.",
+    "remedy": "Avoid excessive nitrogen application. Use resistant cultivars. Apply systemic fungicides such as tricyclazole if symptoms appear."
+  },
+  {
+    "id": 4,
+    "name": "Leaf Scald",
+    "cause": "Fungus Microdochium oryzae. Common in wet seasons and high humidity. Spreads via infected seeds or wind-blown rain.",
+    "remedy": "Practice seed treatment with carbendazim. Ensure balanced fertilization and rotate crops to reduce field inoculum."
+  },
+  {
+    "id": 5,
+    "name": "Narrow Brown Spot",
+    "cause": "Fungus Cercospora oryzae. Appears late in the season. More prevalent when soil potassium levels are low.",
+    "remedy": "Plant resistant rice varieties. Ensure adequate potassium levels in the soil. Practice field sanitation by removing crop residues."
+  },
+  {
+    "id": 6,
+    "name": "Neck Blast",
+    "cause": "Caused by Pyricularia oryzae fungus attacking the neck of the panicle. The most destructive form of blast disease.",
+    "remedy": "Apply preventive fungicides at the 'booting' or 'heading' stage. Use resistant varieties and avoid late nitrogen top-dressing."
+  },
+  {
+    "id": 7,
+    "name": "Rice Hispa",
+    "cause": "Damage caused by the beetle Dicladispa armigera. Adults scrape chlorophyll from the leaves, leaving white parallel streaks.",
+    "remedy": "Prune leaf tips before transplanting to remove eggs. Use manual insect traps. Apply recommended insecticides like malathion if thresholds are exceeded."
+  },
+  {
+    "id": 8,
+    "name": "Sheath Blight",
+    "cause": "Fungus Rhizoctonia solani. Favored by high nitrogen levels, high planting density, and hot, humid weather.",
+    "remedy": "Reduce planting density to improve airflow. Avoid excessive nitrogen. Use fungicides like hexaconazole or validamycin if required."
+  },
+  {
+    "id": 9,
+    "name": "Tungro",
+    "cause": "Viral complex spread by the Green Leafhopper (GLH). Infected plants are stunted and display yellow-to-orange leaf discoloration.",
+    "remedy": "Manage the leafhopper vector using resistant varieties or targeted insecticides. Practice synchronous planting to avoid continuous hosts."
+  }
+]
