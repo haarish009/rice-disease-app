@@ -29,8 +29,10 @@ function App() {
     formData.append('file', selectedFile);
 
     try {
-      // connecting to the FastAPI backend
-      const response = await axios.post('http://localhost:8000/predict', formData, {
+      // Use environment variable for production, fallback to localhost for development
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      
+      const response = await axios.post(`${API_URL}/predict`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
