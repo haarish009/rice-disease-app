@@ -113,7 +113,8 @@ async def predict(file: UploadFile = File(...)):
         heatmap_3ch = np.repeat(heatmap_soft[:, :, np.newaxis], 3, axis=2)
         segmented_img = img_array * heatmap_3ch
         
-        stage2_preds = stage2_model.predict(segmented_img[np.newaxis, ...], verbose=0)
+        # Use original image for Stage 2 inference since it was trained on normal images
+        stage2_preds = stage2_model.predict(img_array[np.newaxis, ...], verbose=0)
         stage2_class_idx = np.argmax(stage2_preds[0])
         stage2_confidence = float(stage2_preds[0][stage2_class_idx])
         stage2_label = CLASSES[stage2_class_idx]

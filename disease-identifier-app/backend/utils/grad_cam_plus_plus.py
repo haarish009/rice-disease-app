@@ -12,9 +12,7 @@ class GradCAMPlusPlus:
 
     def generate_heatmap(self, image, class_idx):
         """Returns a soft float [0,1] heatmap for Stage 2 attention."""
-        # Ensure image is float32 and normalized
-        if image.max() > 1.0:
-            image = image.astype('float32') / 255.0
+        # Remove explicit normalization scaling. Model inherently uses 0-255 scaling.
 
         # Convert to tensor
         img_array = np.expand_dims(image, axis=0)
@@ -84,6 +82,8 @@ def overlay_heatmap(heatmap, image, alpha=0.5, colormap=cv2.COLORMAP_JET):
     # If image is [0, 1], convert to [0, 255]
     if image.max() <= 1.0:
         image = (image * 255).astype('uint8')
+    else:
+        image = image.astype('uint8')
     
     # Resize heatmap to match image size
     heatmap_resized = cv2.resize(heatmap, (image.shape[1], image.shape[0]))
