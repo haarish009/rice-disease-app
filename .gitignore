@@ -46,3 +46,4 @@ dist-ssr/
 disease-identifier-app/venv/
 disease-identifier-app/node_modules/
 frontend/node_modules/
+disease-identifier-app/frontend/.vite/
