@@ -47,7 +47,8 @@ Frontend runs on the Vite development server and communicates with the backend A
 
 ## Notes
 
-- This project is intended for educational/research use.
-- The models used in this project were specially trained by the author.
-- Model training reference repository: https://github.com/haarish009/rice-disease-models
+- **This project is intended for educational/research use**.
+- **The models used in this project were specially trained by the author**.
+- **Model training reference repository: https://github.com/haarish009/rice-disease-models**
+- **Project: rice-disease-app.vercel.app**
 - Model quality depends on the training data and image quality.
